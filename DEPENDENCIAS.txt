@@ -1,0 +1,62 @@
+================================================================================
+GUIA DE REQUERIMIENTOS Y DEPENDENCIAS - VISION ARTIFICIAL
+================================================================================
+
+Este proyecto fue desarrollado en C++17 y utiliza CMake como sistema de construccion
+junto con la libreria oficial de OpenCV 4.x.
+
+Para clonar y compilar este repositorio en cualquier otra maquina de forma rapida,
+sigue las indicaciones para tu sistema operativo:
+
+--------------------------------------------------------------------------------
+1. REQUISITOS GENERALES
+--------------------------------------------------------------------------------
+- Compilador con soporte C++17:
+  * Windows: Microsoft Visual C++ (MSVC) incluido en Visual Studio 2019 / 2022
+  * Linux: GCC 9+ o Clang 10+
+  * macOS: Apple Clang / Xcode
+- CMake version 3.16 o superior.
+- OpenCV 4.x (Nucleo C++ con headers y librerias de enlace).
+
+--------------------------------------------------------------------------------
+2. INSTALACION RAPIDA EN WINDOWS
+--------------------------------------------------------------------------------
+Opcion A: Descarga Manual Directa (Recomendada)
+1. Descargar el archivo precompilado de OpenCV para Windows desde el repositorio oficial:
+   https://github.com/opencv/opencv/releases/
+   (Seleccionar opencv-4.x.x-windows.exe, por ejemplo version 4.10.0 o 4.14.0).
+2. Ejecutar el extractor y descomprimir en la raiz del disco C:
+   Destino: C:\opencv
+   (El proyecto detectara automaticamente C:\opencv\build sin requerir configuracion adicional).
+3. Si prefieres descomprimir en otra unidad (por ejemplo D:\opencv o C:\herramientas\opencv):
+   Establecer la variable de entorno OpenCV_DIR apuntando a la subcarpeta 'build':
+   setx OpenCV_DIR "D:\mi_ruta\opencv\build"
+
+Opcion B: Mediante Gestor de Paquetes (Chocolatey / Winget)
+- Instalar CMake:
+  winget install Kitware.CMake
+- Instalar Visual Studio con herramientas C++:
+  winget install Microsoft.VisualStudio.2022.Community --override "--add Microsoft.VisualStudio.Workload.NativeDesktop --passive"
+- Con Chocolatey:
+  choco install cmake opencv
+
+--------------------------------------------------------------------------------
+3. INSTALACION RAPIDA EN LINUX (Ubuntu / Debian / Mint)
+--------------------------------------------------------------------------------
+Ejecutar en la terminal:
+  sudo apt update
+  sudo apt install -y build-essential cmake libopencv-dev pkg-config
+
+--------------------------------------------------------------------------------
+4. INSTALACION RAPIDA EN MACOS
+--------------------------------------------------------------------------------
+Ejecutar con Homebrew:
+  brew update
+  brew install cmake opencv
+
+--------------------------------------------------------------------------------
+5. VERIFICACION DE INSTALACION
+--------------------------------------------------------------------------------
+Para verificar que las herramientas estan correctamente instaladas:
+  cmake --version
+  git --version

@@ -1,0 +1,2 @@
+cmake --build Punto1\build --config Release; .\Punto1\build\Release\Punto1_App.exe
+cmake --build . --config Release; .\Release\Punto1_App.exe

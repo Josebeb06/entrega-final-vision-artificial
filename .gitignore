@@ -1,0 +1,55 @@
+# Visual Studio / MSVC
+.vs/
+*.sln.docstates
+*.user
+*.suo
+*.userosscache
+*.sln.ide
+Debug/
+Release/
+x64/
+x86/
+build/
+*/build/
+out/
+*/out/
+
+# CMake generados
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.cmake
+!CMakeLists.txt
+Makefile
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.slnx
+*.dir/
+
+# Binarios y temporales
+*.exe
+*.dll
+*.so
+*.dylib
+*.lib
+*.a
+*.obj
+*.o
+*.ilk
+*.pdb
+*.exp
+*.idb
+*.tlog
+*.recipe
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Sistema / OS
+Thumbs.db
+.DS_Store

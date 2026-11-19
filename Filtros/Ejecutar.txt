@@ -1,0 +1,4 @@
+# Compilar y ejecutar Filtros
+cmake -B build
+cmake --build build --config Release
+.\build\Release\filtros_app.exe

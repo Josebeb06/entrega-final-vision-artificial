@@ -1,0 +1,4 @@
+# Compilar y ejecutar Histogramas
+cmake -B build
+cmake --build build --config Release
+.\build\Release\histogramas_app.exe

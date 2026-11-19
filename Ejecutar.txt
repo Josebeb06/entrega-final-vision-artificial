@@ -1,0 +1,29 @@
+================================================================
+  INSTRUCCIONES DE COMPILACIÓN Y EJECUCIÓN (PLAYGROUND GLOBAL)
+================================================================
+
+1. COMPILAR LA SUITE COMPLETA (GUI PRINCIPAL Y TODOS LOS MÓDULOS):
+   cmake -B build
+   cmake --build build --config Release
+
+2. EJECUTAR LA INTERFAZ GRÁFICA PRINCIPAL (PLAYGROUND):
+   .\build\Release\playground_app.exe
+   (o simplemente hacer doble clic en 'Ejecutar_Playground.bat')
+
+3. EJECUTAR MÓDULOS DE FORMA INDIVIDUAL (OPCIONAL):
+   - Filtros:
+     .\build\Filtros\Release\filtros_app.exe
+   - Histogramas:
+     .\build\Histogramas\Release\histogramas_app.exe
+   - Umbralización y Binarización:
+     .\build\Binarización\Release\binarizacion_app.exe
+   - Morfología Matemática:
+     .\build\MorfologiaMatematica\Release\morfologia_app.exe
+   - Segmentación:
+     .\build\Segmentacion\Release\segmentacion_app.exe
+   - Caracterización:
+     .\build\Caracterizacion\Release\caracterizacion_app.exe
+   - Modelos de Cámara y Calibración:
+     .\build\TallerCalibracion\Release\calibracion_app.exe
+   - Frecuencia (Fourier):
+     .\build\Frecuencia\Release\frecuencia_app.exe
