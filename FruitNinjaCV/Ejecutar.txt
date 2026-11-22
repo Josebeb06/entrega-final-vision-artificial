@@ -1,4 +1,29 @@
-# Compilar y ejecutar FruitNinjaCV
-cmake -B build
-cmake --build build --config Release
-.\build\Release\fruit_ninja_app.exe
+================================================================
+INSTRUCCIONES DE EJECUCION: FRUIT NINJA CV
+================================================================
+
+Existen dos implementaciones disponibles segun el entorno del usuario:
+
+1. METODO RECOMENDADO: Version Full HD (1080p) con MediaPipe IA
+----------------------------------------------------------------
+- Resolucion nativa 1920x1080 y soporte de pantalla completa ('F').
+- Rastreo neuronal 3D de la yema del dedo indice (Landmark 8).
+- 100% inmune a cuadros dorados, paredes, rostros y ropa.
+- Soporte para dos manos (doble katana), combos, fisicas y particulas.
+
+Ejecucion desde la terminal:
+    python FruitNinjaCV/fruit_ninja.py
+
+O simplemente ejecuta desde la raiz del repositorio:
+    Ejecutar_FruitNinja.bat
+
+
+2. METODO ALTERNATIVO: Version C++ Nativa
+----------------------------------------------------------------
+- Compilacion nativa con CMake y OpenCV C++.
+- Segmentacion de piel con descarte perimetral superior y filtro facial Haar.
+
+Compilacion y ejecucion manual:
+    cmake -B build -S .
+    cmake --build build --config Release
+    .\build\Release\fruit_ninja_app.exe

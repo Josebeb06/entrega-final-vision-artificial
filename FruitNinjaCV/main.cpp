@@ -368,8 +368,13 @@ public:
         double maxArea = 0;
         int idxMejor = -1;
         for (size_t i = 0; i < contornos.size(); i++) {
+            cv::Rect bb = cv::boundingRect(contornos[i]);
+            // Descartar elementos estaticos pegados al borde superior (cuadros en la pared, lamparas)
+            if (bb.y <= 15 && bb.br().y < frame.rows * 0.45f) {
+                continue;
+            }
             double a = cv::contourArea(contornos[i]);
-            if (a > 3500 && a < 95000 && a > maxArea) {
+            if (a > 3000 && a < 120000 && a > maxArea) {
                 maxArea = a;
                 idxMejor = static_cast<int>(i);
             }
@@ -464,11 +469,12 @@ int main() {
         return -1;
     }
 
-    cap.set(cv::CAP_PROP_FRAME_WIDTH, 960);
-    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 540);
+    cap.set(cv::CAP_PROP_FRAME_WIDTH, 1280);
+    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 720);
 
     const std::string winName = "Fruit Ninja CV - Vision Artificial";
-    cv::namedWindow(winName, cv::WINDOW_AUTOSIZE);
+    cv::namedWindow(winName, cv::WINDOW_NORMAL);
+    cv::resizeWindow(winName, 1600, 900);
 
     // Inicializar detector de manos y sprites
     DetectorManoNinja detector;

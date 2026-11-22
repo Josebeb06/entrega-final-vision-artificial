@@ -50,6 +50,15 @@ Makefile
 !.vscode/tasks.json
 !.vscode/launch.json
 
+# Python / PyInstaller
+__pycache__/
+*/__pycache__/
+*.pyc
+*.pyo
+*.spec
+dist/
+build_py/
+
 # Sistema / OS
 Thumbs.db
 .DS_Store

@@ -133,10 +133,18 @@ El proyecto esta disenado bajo una arquitectura desacoplada y modular que combin
 * **Espectro en Tiempo Real:** Visualizacion de la distribucion de frecuencias espaciales a partir del flujo de la camara web.
 
 ### Modulo Adicional: Fruit Ninja CV (`FruitNinjaCV/`)
-* **Tracking e Identificacion Robusta de la Mano:** Supresion facial y de cuello mediante clasificador en cascada de Haar (`haarcascade_frontalface_default.xml`), eliminando falsos positivos originados por la cara o el cuerpo.
-* **Segmentacion Hibrida de Piel:** Combinacion de espacios YCrCb y HSV con operaciones morfologicas de apertura y cierre.
-* **Centro de Palma y Deteccion de Yema:** Estimacion del centro y radio de la palma con la Transformada de Distancia Euclidiana L2 (`cv::distanceTransform`), y extraccion de la yema del dedo indice mediante envolvente convexa (`cv::convexHull`) y filtrado exponencial movil (EMA).
-* **Fisica y Sprites Vectoriales:** Generacion procedural de cuatro frutas distintas (Sandia, Naranja, Manzana, Platano) y Bombas ninja con mecha animada, particulas de jugo balisticas, mitades rotatorias por transformacion afin, sistema de combos y estela brillante de la espada.
+* **Implementacion con IA (MediaPipe HandLandmarker - Recomendada):**
+  - **Rastreo Neuronal 3D:** Deteccion precisa de la punta del dedo indice (Landmark 8) mediante red neuronal convolucional (LiteRT / XNNPACK). Totalmente inmune a marcos dorados de cuadros en la pared, iluminacion cambiante, muebles, ropa y rostros.
+  - **Resolucion Full HD (1920x1080):** Canvas de alta resolucion con soporte para alternar a pantalla completa mediante la tecla `F`.
+  - **Soporte Bimanual (Doble Katana):** Permite cortar con una o ambas manos de forma simultanea.
+  - **Estela Katana de Neon:** Efecto visual de sable con nucleo blanco de corte, resplandor exterior y chispas balisticas.
+  - **Generacion Procedural de Frutas HD:** Sprites vectoriales de alta definicion (Sandia con semillas y corteza, Naranja con gajos y albedo, Manzana roja con tallo y hoja, Platano curvado, Limon amarillo y Bomba con mecha ardiente animada).
+  - **Fisica y Separacion Afin:** Trayectorias parabolicas con gravedad ($g = 0.58$), rotacion continua y separacion dinamica de mitades con velocidad angular al rebanar.
+  - **Salpicaduras en Pantalla:** Manchas de jugo que se estampan en el lente virtual de la camara y se van desvaneciendo progresivamente.
+  - **Sistema de Combos y Audio:** Deteccion de cortes multiples en intervalos inferiores a 350 ms ("COMBO x2", "COMBO x3", "MEGA COMBO x4+"), efectos de sonido sintetizados asincronos y sistema de 3 vidas.
+  - **Menu Interactivo:** Inicio del juego y reinicio tras Game Over mediante el corte de una sandia flotante interactiva en pantalla.
+* **Implementacion C++ Nativa:**
+  - Segmentacion hibrida de piel en espacios YCrCb + HSV, supresion perimetral superior (evita deteccion de cuadros colgados en la pared) y mascara facial Haar Cascade.
 
 ---
 
@@ -144,6 +152,7 @@ El proyecto esta disenado bajo una arquitectura desacoplada y modular que combin
 
 Para compilar y ejecutar el proyecto en cualquier maquina se requiere:
 
+### Requisitos para el Playground Principal (C++)
 1. **Compilador C++:**
    * **Windows:** Visual Studio 2019 o Visual Studio 2022 (con carga de trabajo "Desarrollo para el escritorio con C++" instalada, MSVC v142/v143).
    * **Linux:** GCC 9+ o Clang 10+ (`build-essential`).
@@ -151,7 +160,17 @@ Para compilar y ejecutar el proyecto en cualquier maquina se requiere:
 2. **CMake:** Version 3.16 o superior.
 3. **OpenCV:** Version 4.x (Nucleo C++ con librerias de enlace e includes).
 
-### Instalacion rapida de dependencias segun el Sistema Operativo
+### Requisitos para Fruit Ninja CV con IA (Python)
+* **Python:** Version 3.9 o superior (probado y optimizado en Python 3.10 - 3.14).
+* **Instalacion automatica de dependencias de Python:**
+  ```bash
+  pip install -r requirements.txt
+  ```
+  *(Instala `opencv-python`, `mediapipe` y `numpy`).*
+
+---
+
+### Instalacion rapida de dependencias de OpenCV C++ segun el Sistema Operativo
 
 #### En Windows:
 1. Descargar OpenCV precompilado para Windows desde el repositorio oficial: https://github.com/opencv/opencv/releases (por ejemplo OpenCV 4.10.0 o 4.14.0).
@@ -161,25 +180,27 @@ Para compilar y ejecutar el proyecto en cualquier maquina se requiere:
 #### En Linux (Ubuntu / Debian):
 ```bash
 sudo apt update
-sudo apt install -y build-essential cmake libopencv-dev
+sudo apt install -y build-essential cmake libopencv-dev python3-pip
+pip install -r requirements.txt
 ```
 
 #### En macOS (con Homebrew):
 ```bash
 brew update
-brew install cmake opencv
+brew install cmake opencv python
+pip3 install -r requirements.txt
 ```
 
 ---
 
 ## 4. Instrucciones de Compilacion y Ejecucion
 
-### Metodo 1: Compilacion y Ejecucion de la Suite Grafica (Playground Principal)
+### Metodo 1: Suite Grafica Principal (Playground UI)
 
-#### A traves del lanzador automatico (Windows):
-Hacer doble clic sobre el archivo [Ejecutar_Playground.bat](Ejecutar_Playground.bat). El script verifica la compilacion, copia las librerias dinamicas (`opencv_world*.dll`) e inicia la aplicacion.
+#### En Windows:
+Doble clic sobre el archivo [Ejecutar_Playground.bat](Ejecutar_Playground.bat). El script verifica la compilacion con CMake, copia las librerias dinamicas (`opencv_world*.dll`) e inicia la aplicacion global con los 8 modulos integrados.
 
-#### A traves de la terminal (Cualquier plataforma):
+#### Desde la terminal (Cualquier plataforma):
 ```bash
 # 1. Configurar y generar el proyecto con CMake
 cmake -B build
@@ -192,6 +213,25 @@ cmake --build build --config Release
 .\build\Release\playground_app.exe
 # En Linux / macOS:
 ./build/playground_app
+```
+
+---
+
+### Metodo 2: Fruit Ninja CV (Juego Standalone)
+
+#### En Windows (Lanzador automatico dedicado):
+Doble clic sobre el archivo [Ejecutar_FruitNinja.bat](Ejecutar_FruitNinja.bat). El lanzador abre de forma directa la version Full HD 1080p con rastreo neuronal MediaPipe (o compila la version C++ como alternativa de contingencia si no se dispone de Python).
+
+#### Desde la terminal:
+```bash
+# Version con Inteligencia Artificial (MediaPipe):
+python FruitNinjaCV/fruit_ninja.py
+
+# Version C++ compilada:
+cd FruitNinjaCV
+cmake -B build
+cmake --build build --config Release
+.\build\Release\fruit_ninja_app.exe
 ```
 
 ---
