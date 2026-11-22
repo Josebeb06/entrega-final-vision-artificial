@@ -27,6 +27,7 @@ El proyecto esta disenado bajo una arquitectura desacoplada y modular que combin
 .
 |-- CMakeLists.txt                # Configuracion global de CMake (Playground + Subproyectos)
 |-- Ejecutar_Playground.bat       # Script lanzador en Windows con resolucion de entorno
+|-- Ejecutar_FruitNinja.bat       # Lanzador directo del juego interactivo Fruit Ninja CV
 |-- Ejecutar.txt                  # Guia rapida de ejecucion por terminal
 |-- .gitignore                    # Exclusion estricta de binarios, temporales y caches
 |-- assets/                       # Banco de imagenes de prueba estandarizadas
@@ -131,6 +132,12 @@ El proyecto esta disenado bajo una arquitectura desacoplada y modular que combin
 * **Transformada Discreta de Fourier 2D (DFT):** Conversion del dominio espacial al dominio frecuencial complejo, computo de la magnitud espectral en escala logaritmica $M = \log(1 + |F(u, v)|)$ y reordenamiento de cuadrantes (centering/shift de la componente DC al origen).
 * **Espectro en Tiempo Real:** Visualizacion de la distribucion de frecuencias espaciales a partir del flujo de la camara web.
 
+### Modulo Adicional: Fruit Ninja CV (`FruitNinjaCV/`)
+* **Tracking e Identificacion Robusta de la Mano:** Supresion facial y de cuello mediante clasificador en cascada de Haar (`haarcascade_frontalface_default.xml`), eliminando falsos positivos originados por la cara o el cuerpo.
+* **Segmentacion Hibrida de Piel:** Combinacion de espacios YCrCb y HSV con operaciones morfologicas de apertura y cierre.
+* **Centro de Palma y Deteccion de Yema:** Estimacion del centro y radio de la palma con la Transformada de Distancia Euclidiana L2 (`cv::distanceTransform`), y extraccion de la yema del dedo indice mediante envolvente convexa (`cv::convexHull`) y filtrado exponencial movil (EMA).
+* **Fisica y Sprites Vectoriales:** Generacion procedural de cuatro frutas distintas (Sandia, Naranja, Manzana, Platano) y Bombas ninja con mecha animada, particulas de jugo balisticas, mitades rotatorias por transformacion afin, sistema de combos y estela brillante de la espada.
+
 ---
 
 ## 3. Requisitos del Sistema y Dependencias
@@ -214,6 +221,7 @@ Tabla resumen de binarios independientes generados:
 | **Segmentacion** | `.\build\Segmentacion\Release\segmentacion_app.exe` |
 | **Caracterizacion** | `.\build\Caracterizacion\Release\caracterizacion_app.exe` |
 | **Frecuencia (Fourier)** | `.\build\Frecuencia\Release\frecuencia_app.exe` |
+| **Fruit Ninja CV** | `.\FruitNinjaCV\build\Release\fruit_ninja_app.exe` (o doble clic en `Ejecutar_FruitNinja.bat`) |
 
 ---
 

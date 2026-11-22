@@ -1,0 +1,4 @@
+# Compilar y ejecutar FruitNinjaCV
+cmake -B build
+cmake --build build --config Release
+.\build\Release\fruit_ninja_app.exe

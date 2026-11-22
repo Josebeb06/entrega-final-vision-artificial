@@ -10,7 +10,11 @@
    .\build\Release\playground_app.exe
    (o simplemente hacer doble clic en 'Ejecutar_Playground.bat')
 
-3. EJECUTAR MÓDULOS DE FORMA INDIVIDUAL (OPCIONAL):
+3. EJECUTAR EL JUEGO FRUIT NINJA CV:
+   Double clic en 'Ejecutar_FruitNinja.bat'
+   o ejecutar: .\FruitNinjaCV\build\Release\fruit_ninja_app.exe
+
+4. EJECUTAR MÓDULOS DE FORMA INDIVIDUAL (OPCIONAL):
    - Filtros:
      .\build\Filtros\Release\filtros_app.exe
    - Histogramas:
