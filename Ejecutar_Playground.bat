@@ -12,8 +12,6 @@ if exist "C:\opencv\build\x64\vc16\bin" set "PATH=C:\opencv\build\x64\vc16\bin;%
 if exist "C:\opencv\build\x64\vc15\bin" set "PATH=C:\opencv\build\x64\vc15\bin;%PATH%"
 if defined OpenCV_DIR (
     if exist "%OpenCV_DIR%\bin" set "PATH=%OpenCV_DIR%\bin;%PATH%"
-    if exist "%OpenCV_DIR%\..\bin" set "PATH=%OpenCV_DIR%\..\bin;%PATH%"
-    if exist "%OpenCV_DIR%\..\..\bin" set "PATH=%OpenCV_DIR%\..\..\bin;%PATH%"
 )
 
 :: 2. Si no esta compilado, compilarlo con CMake
